@@ -113,15 +113,15 @@ const BobingTracker = () => {
     <div className="min-h-screen bg-gradient-to-br from-orange-50 to-red-50 p-4">
       <div className="max-w-6xl mx-auto">
         <div className="bg-white rounded-lg shadow-lg p-6 mb-6">
-          <div className="flex justify-between items-start mb-2">
+          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 mb-2">
             <div className="flex-1">
-              <h1 className="text-3xl font-bold text-center text-red-600 mb-2">🎲 博饼游戏追踪</h1>
-              <p className="text-center text-gray-600 mb-6">Mooncake Dice Game Tracker</p>
+              <h1 className="text-2xl sm:text-3xl font-bold text-center text-red-600 mb-2">🎲 博饼游戏追踪</h1>
+              <p className="text-center text-gray-600 mb-4 sm:mb-6">Mooncake Dice Game Tracker</p>
             </div>
             {players.length > 0 && (
               <button
                 onClick={resetGame}
-                className="flex items-center gap-2 bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition-colors"
+                className="flex items-center justify-center gap-2 bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition-colors whitespace-nowrap"
                 title="重置游戏"
               >
                 <RotateCcw size={18} /> 重置游戏
@@ -131,26 +131,26 @@ const BobingTracker = () => {
 
           {/* Prize Values */}
           <div className="bg-gradient-to-r from-red-100 to-orange-100 rounded-lg p-4 mb-6">
-            <div className="flex justify-between items-center mb-3">
-              <h2 className="text-xl font-bold text-red-700">奖品设置</h2>
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 mb-3">
+              <h2 className="text-lg sm:text-xl font-bold text-red-700">奖品设置</h2>
               {!editingPrizes ? (
-                <button 
+                <button
                   onClick={() => setEditingPrizes(true)}
-                  className="flex items-center gap-2 bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600"
+                  className="flex items-center justify-center gap-2 bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 whitespace-nowrap"
                 >
                   <Edit2 size={16} /> 修改
                 </button>
               ) : (
                 <div className="flex gap-2">
-                  <button 
+                  <button
                     onClick={updatePrizes}
-                    className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600"
+                    className="flex-1 sm:flex-none bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600"
                   >
                     保存
                   </button>
-                  <button 
+                  <button
                     onClick={cancelEditPrizes}
-                    className="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600"
+                    className="flex-1 sm:flex-none bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600"
                   >
                     取消
                   </button>
@@ -161,25 +161,25 @@ const BobingTracker = () => {
             {editingPrizes ? (
               <div className="grid gap-3 mb-4">
                 {prizeTypes.map(type => (
-                  <div key={type} className="bg-white rounded-lg p-3 flex gap-4 items-center">
-                    <div className="font-bold text-red-600 w-16">{type}</div>
-                    <div className="flex gap-2 flex-1">
+                  <div key={type} className="bg-white rounded-lg p-3 flex flex-col sm:flex-row gap-2 sm:gap-4 sm:items-center">
+                    <div className="font-bold text-red-600 w-full sm:w-16">{type}</div>
+                    <div className="flex gap-2 flex-1 flex-wrap sm:flex-nowrap">
                       <input
                         type="number"
                         value={tempPrizeConfig[type].value}
                         onChange={(e) => updateTempValue(type, 'value', e.target.value)}
-                        className="w-24 px-3 py-1 border-2 border-gray-300 rounded"
+                        className="w-20 sm:w-24 px-3 py-2 border-2 border-gray-300 rounded"
                         placeholder="金额"
                       />
-                      <span className="py-1">元</span>
+                      <span className="py-2">元</span>
                       <input
                         type="number"
                         value={tempPrizeConfig[type].limit}
                         onChange={(e) => updateTempValue(type, 'limit', e.target.value)}
-                        className="w-24 px-3 py-1 border-2 border-gray-300 rounded"
+                        className="w-20 sm:w-24 px-3 py-2 border-2 border-gray-300 rounded"
                         placeholder="数量"
                       />
-                      <span className="py-1">个</span>
+                      <span className="py-2">个</span>
                     </div>
                   </div>
                 ))}
@@ -205,18 +205,18 @@ const BobingTracker = () => {
           </div>
 
           {/* Add Player */}
-          <div className="flex gap-2 mb-6">
+          <div className="flex flex-col sm:flex-row gap-2 mb-6">
             <input
               type="text"
               value={newPlayerName}
               onChange={(e) => setNewPlayerName(e.target.value)}
               onKeyPress={(e) => e.key === 'Enter' && addPlayer()}
               placeholder="输入玩家名字..."
-              className="flex-1 px-4 py-2 border-2 border-gray-300 rounded-lg focus:border-red-500 outline-none"
+              className="flex-1 px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-red-500 outline-none"
             />
-            <button 
+            <button
               onClick={addPlayer}
-              className="flex items-center gap-2 bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-600"
+              className="flex items-center justify-center gap-2 bg-red-500 text-white px-6 py-3 rounded-lg hover:bg-red-600 whitespace-nowrap"
             >
               <Plus size={20} /> 添加玩家
             </button>
@@ -233,18 +233,18 @@ const BobingTracker = () => {
           <div className="grid gap-6">
             {players.map(player => (
               <div key={player.id} className="bg-white rounded-lg shadow-lg p-6">
-                <div className="flex justify-between items-center mb-4">
+                <div className="flex justify-between items-start sm:items-center mb-4">
                   <div>
-                    <h3 className="text-2xl font-bold text-gray-800">{player.name}</h3>
-                    <p className="text-3xl font-bold text-red-600 mt-1">
+                    <h3 className="text-xl sm:text-2xl font-bold text-gray-800">{player.name}</h3>
+                    <p className="text-2xl sm:text-3xl font-bold text-red-600 mt-1">
                       总计: ¥{getPlayerTotal(player)}
                     </p>
                   </div>
-                  <button 
+                  <button
                     onClick={() => removePlayer(player.id)}
-                    className="text-red-500 hover:text-red-700"
+                    className="text-red-500 hover:text-red-700 p-2"
                   >
-                    <Trash2 size={24} />
+                    <Trash2 size={20} className="sm:w-6 sm:h-6" />
                   </button>
                 </div>
 
@@ -299,18 +299,18 @@ const BobingTracker = () => {
 
         {/* Leaderboard */}
         {players.length > 1 && (
-          <div className="bg-white rounded-lg shadow-lg p-6 mt-6">
-            <h2 className="text-2xl font-bold text-center text-red-600 mb-4">🏆 排行榜</h2>
+          <div className="bg-white rounded-lg shadow-lg p-4 sm:p-6 mt-6">
+            <h2 className="text-xl sm:text-2xl font-bold text-center text-red-600 mb-4">🏆 排行榜</h2>
             <div className="space-y-2">
               {[...players].sort((a, b) => getPlayerTotal(b) - getPlayerTotal(a)).map((player, index) => (
-                <div key={player.id} className="flex items-center justify-between bg-gradient-to-r from-red-50 to-orange-50 p-4 rounded-lg">
-                  <div className="flex items-center gap-4">
-                    <div className={`text-2xl font-bold ${index === 0 ? 'text-yellow-500' : index === 1 ? 'text-gray-400' : index === 2 ? 'text-orange-600' : 'text-gray-600'}`}>
+                <div key={player.id} className="flex items-center justify-between bg-gradient-to-r from-red-50 to-orange-50 p-3 sm:p-4 rounded-lg">
+                  <div className="flex items-center gap-2 sm:gap-4">
+                    <div className={`text-xl sm:text-2xl font-bold ${index === 0 ? 'text-yellow-500' : index === 1 ? 'text-gray-400' : index === 2 ? 'text-orange-600' : 'text-gray-600'}`}>
                       #{index + 1}
                     </div>
-                    <div className="font-bold text-lg">{player.name}</div>
+                    <div className="font-bold text-base sm:text-lg">{player.name}</div>
                   </div>
-                  <div className="text-2xl font-bold text-red-600">¥{getPlayerTotal(player)}</div>
+                  <div className="text-xl sm:text-2xl font-bold text-red-600">¥{getPlayerTotal(player)}</div>
                 </div>
               ))}
             </div>
